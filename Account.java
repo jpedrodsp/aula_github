@@ -18,10 +18,18 @@ public class Account {
 
     // Increase and decrease balance
     public boolean addBalance(double value) {
+        // Check for negative increases
+        if (value < 0) {
+            return false;
+        }
         this.balance += value;
         return true;
     }
     public boolean subtractBalance (double value) {
+        // Check for negative decreases
+        if (value < 0) {
+            return false;
+        }
         // Balance value can't be negative. At least in my bank ;)
         if (this.balance - value < 0) {
             return false;

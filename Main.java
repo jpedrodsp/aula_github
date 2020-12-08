@@ -25,6 +25,7 @@ public class Main {
 		Client retrievedClient = clients.get(str);
 		if (retrievedClient == null) {
 			// Couldn't find client data.
+			System.out.println("Error: client registry does not exists!");
 			return -1;
 		}
 
@@ -36,11 +37,13 @@ public class Main {
 			accountId = Integer.parseInt(str);
 		} catch (NumberFormatException e) {
 			// Invalid account id provided.
+			System.out.println("Error: invalid account id provided!");
 			return -2;
 		}
 		Account targetAccount = retrievedClient.getAccount(accountId);
 		if (targetAccount == null) {
 			// The account provided doesn't exists.
+			System.out.println("Error: provided account does not exists!");
 			return -3;
 		}
 
@@ -51,16 +54,19 @@ public class Main {
 			value = Double.parseDouble(str);
 		} catch (NumberFormatException e) {
 			// Invalid value provided
+			System.out.println("Error: invalid deposit value provided!");
 			return -4;
 		}
 		if (value < 0) {
 			// Negative values shouldn't be provided
+			System.out.println("Error: negative deposit value not allowed!");
 			return -5;
 		}
 
 		boolean transactionStatus = targetAccount.addBalance(value);
 		if (transactionStatus == false) {
 			// A invalid add transaction only happens when it inserts a negative value, thus we repeat the returned error code.
+			System.out.println("Error: invalid transaction!");
 			return -5;
 		}
 

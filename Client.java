@@ -54,7 +54,7 @@ public class Client {
         Account checkReference = accounts.get(id);
         if (checkReference == null) {
             Account newAccount = new Account(id);
-            accounts.put(targetId, newAccount);
+            accounts.put(id, newAccount);
             return true;
         }
         return false;

@@ -44,6 +44,7 @@ public class Menu {
 			if(op == 1){}
 			if(op == 2){ Main.addingClient(); op = 0;}
 			if(op == 3){}
+			if(op == 4){ Main.IncreaseAccountBalance(Main.clients); }
 		}
 		return op;
 	}

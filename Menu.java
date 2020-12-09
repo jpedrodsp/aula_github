@@ -41,10 +41,10 @@ public class Menu {
 				op=0;
 			}
 
-			if(op == 1){ Main.addingAccount(); op = 0; }
-			if(op == 2){ Main.addingClient(); op = 0; }
-			if(op == 3){ Main.accountBalanceOperations(); op = 0; }
-			if(op == 4){ Main.IncreaseAccountBalance(Main.clients); }
+			if(op == 1) { Main.addingAccount(); op = 0; }
+			if(op == 2) { Main.addingClient(); op = 0; }
+			if(op == 3) { Main.accountBalanceOperations(); op = 0; }
+			if(op == 4) { Main.IncreaseAccountBalance(Main.clients); }
 		}
 		return op;
 	}

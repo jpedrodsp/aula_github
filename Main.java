@@ -8,7 +8,7 @@ public class Main {
 	static Dictionary<String, Client> clients = new Hashtable<String, Client>();
 
 	public static void main(String[] args) {
-		Menu mainMenu =  new Menu("Menu Principal", Arrays.asList("Conta", "Cliente", "Operacoes"));
+		Menu mainMenu =  new Menu("Menu Principal", Arrays.asList("Conta", "Cliente", "Operacoes", "[Extra] Adicionar saldo a conta"));
 		System.out.println(mainMenu.getSelection() + "foi selecionada");
 		System.out.println("Fim");
 		//System.out.println("Clientes: "+clients);
@@ -192,7 +192,7 @@ public class Main {
 			return -3;
 		}
 		
-		System.out.println("Selecione a operação:\n1-Depositar\n2-Sacar");
+		System.out.println("Selecione a operaï¿½ï¿½o:\n1-Depositar\n2-Sacar");
 		str = s.nextLine();
 		if(str == "1") {
 			System.out.println("Insira o valor a ser adicionado a conta: ");

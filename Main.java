@@ -51,7 +51,7 @@ public class Main {
 		return 0;
 	}
 
-  public static int addingAccount() {
+    public static int addingAccount() {
 		Scanner s = new Scanner(System.in);
 
 		String  cpf;
@@ -156,6 +156,101 @@ public class Main {
 
 		System.out.println("Pronto!");
 
+		return 0;
+	}
+	
+	public static int accountBalanceOperations() {
+		Scanner s = new Scanner(System.in);
+		String str;
+		
+		// Retrieve client
+		System.out.println("--Balance Operations--");
+		System.out.println("Insira o CPF do cliente: ");
+		str = s.nextLine();
+		Client retrievedClient = clients.get(str);
+		if (retrievedClient == null) {
+			// Couldn't find client data.
+			System.out.println("Error: client registry does not exists!");
+			return -1;
+		}
+
+		// Retrieve client account
+		System.out.println("Insira o ID da conta: ");
+		str = s.nextLine();
+		int accountId = -1;
+		try {
+			accountId = Integer.parseInt(str);
+		} catch (NumberFormatException e) {
+			// Invalid account id provided.
+			System.out.println("Error: invalid account id provided!");
+			return -2;
+		}
+		Account targetAccount = retrievedClient.getAccount(accountId);
+		if (targetAccount == null) {
+			// The account provided doesn't exists.
+			System.out.println("Error: provided account does not exists!");
+			return -3;
+		}
+		
+		System.out.println("Selecione a operação:\n1-Depositar\n2-Sacar");
+		str = s.nextLine();
+		if(str == "1") {
+			System.out.println("Insira o valor a ser adicionado a conta: ");
+			str = s.nextLine();
+			double value = -1;
+			try {
+				value = Double.parseDouble(str);
+			} catch (NumberFormatException e) {
+				// Invalid value provided
+				System.out.println("Error: invalid deposit value provided!");
+				return -4;
+			}
+			if (value < 0) {
+				// Negative values shouldn't be provided
+				System.out.println("Error: negative deposit value not allowed!");
+				return -5;
+			}
+
+			boolean transactionStatus = targetAccount.addBalance(value);
+			if (transactionStatus == false) {
+				// A invalid add transaction only happens when it inserts a negative value, thus we repeat the returned error code.
+				System.out.println("Error: invalid transaction!");
+				return -5;
+			}
+
+			System.out.println("Pronto!");
+		}
+		if(str == "2") {
+			System.out.println("Insira o valor a ser retirado: ");
+			str = s.nextLine();
+			double value = -1;
+			try {
+				value = Double.parseDouble(str);
+			} catch (NumberFormatException e) {
+				// Invalid value provided
+				System.out.println("Error: invalid withdraw value provided!");
+				return -4;
+			}
+			if (value < 0) {
+				// Negative values shouldn't be provided
+				System.out.println("Error: negative withdraw value not allowed!");
+				return -5;
+			}
+			if (value > targetAccount.getBalance()) {
+				// The withdrawal shouldn't be bigger than current balance
+				System.out.println("Error: withdrawal bigger than balance");
+				return -6;
+			}
+			
+			boolean transactionStatus = targetAccount.subtractBalance(value);
+			if (transactionStatus == false) {
+				System.out.println("Error: invalid transaction");
+				return -6;
+			}
+			
+			System.out.println("Pronto!");
+		}
+		
 		return 0;
 	}
 }

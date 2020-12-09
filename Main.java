@@ -51,6 +51,52 @@ public class Main {
 		return 0;
 	}
 
+  public static int addingAccount() {
+		Scanner s = new Scanner(System.in);
+
+		String  cpf;
+		Integer accountId;
+
+		System.out.println("--Criando uma nova conta--");
+		System.out.println("Insira o CPF do cliente: ");
+		cpf = s.nextLine();
+
+		try {
+			Client retrievedClient = clients.get(cpf);
+
+			if (retrievedClient == null) {
+				System.out.println("Error: client does not exists!");
+				return -1;
+			}
+			System.out.println("Bem vindo "+retrievedClient.getName());
+
+			System.out.println("Digite um id de conta");
+			accountId = s.nextInt();
+			
+			try {
+				Account retrievedAccount = retrievedClient.getAccount(accountId);
+
+				if (retrievedAccount != null) {
+				System.out.println("Error: account already exists!");
+				}
+			} catch (NumberFormatException e1) {
+				// Invalid value provided
+				System.out.println("Error: invalid input!");
+				return -1;
+			}
+
+			Account newAccount = new Account(accountId);
+			
+			retrievedClient.registerAccount(newAccount);
+
+			System.out.println("Conta criada!");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}
+		return 0;
+	}
+
 	public static int IncreaseAccountBalance(Dictionary<String, Client> clients) {
 		Scanner s = new Scanner(System.in);
 		String str;

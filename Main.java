@@ -18,6 +18,7 @@ public class Main {
 		Scanner s = new Scanner(System.in);
 		String name, str, cpf;
 		
+		System.out.println("--Adding a new client--");
 		System.out.println("Insira o CPF do cliente: ");
 		cpf = s.nextLine();
 		// checking if there is a client with this cpf in the system

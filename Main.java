@@ -4,13 +4,49 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+	// This is our temporary way of storing client data in our program
+	static Dictionary<String, Client> clients = new Hashtable<String, Client>();
 
 	public static void main(String[] args) {
-		// This is our temporary way of storing client data in our program
-		Dictionary<String, Client> clients = new Hashtable<String, Client>();
 		Menu mainMenu =  new Menu("Menu Principal", Arrays.asList("Conta", "Cliente", "Operacoes"));
 		System.out.println(mainMenu.getSelection() + "foi selecionada");
 		System.out.println("Fim");
+		//System.out.println("Clientes: "+clients);
+	}
+
+	public static int addingClient() {
+		Scanner s = new Scanner(System.in);
+		String name, str, cpf;
+		
+		System.out.println("Insira o CPF do cliente: ");
+		cpf = s.nextLine();
+		// checking if there is a client with this cpf in the system
+		try {
+			Client retrievedClient = clients.get(cpf);
+			if (retrievedClient != null) {
+				System.out.println("Error: client already exists!");
+				return -1;
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		System.out.println("Insira o nome do cliente ");
+		str = s.nextLine();
+		try {
+			name = str;
+		} catch (NumberFormatException e1) {
+			// Invalid value provided
+			System.out.println("Error: invalid input!");
+			return -1;
+		}
+		
+		Client cli = new Client(cpf, name);
+		clients.put(cpf, cli);
+
+		System.out.println("Pronto!");
+
+		return 0;
 	}
 
 	public static int IncreaseAccountBalance(Dictionary<String, Client> clients) {

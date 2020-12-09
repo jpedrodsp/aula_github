@@ -44,7 +44,7 @@ public class Menu {
 			if(op == 1) { Main.addingAccount(); op = 0; }
 			if(op == 2) { Main.addingClient(); op = 0; }
 			if(op == 3) { Main.accountBalanceOperations(); op = 0; }
-			if(op == 4) { Main.IncreaseAccountBalance(Main.clients); }
+			if(op == 4) { Main.IncreaseAccountBalance(Main.clients); op = 0; }
 		}
 		return op;
 	}

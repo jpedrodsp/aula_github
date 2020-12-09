@@ -77,19 +77,20 @@ public class Main {
 				Account retrievedAccount = retrievedClient.getAccount(accountId);
 
 				if (retrievedAccount != null) {
-				System.out.println("Error: account already exists!");
+				  System.out.println("Error: account already exists!");
+          return -2;
 				}
+
+        Account newAccount = new Account(accountId);
+			
+				retrievedClient.registerAccount(newAccount);
+
+				System.out.println("Conta criada!");
 			} catch (NumberFormatException e1) {
 				// Invalid value provided
 				System.out.println("Error: invalid input!");
 				return -1;
 			}
-
-			Account newAccount = new Account(accountId);
-			
-			retrievedClient.registerAccount(newAccount);
-
-			System.out.println("Conta criada!");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return -1;

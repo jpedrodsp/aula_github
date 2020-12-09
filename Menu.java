@@ -41,6 +41,9 @@ public class Menu {
 				op=0;
 			}
 
+			if(op == 1){}
+			if(op == 2){ Main.addingClient(); op = 0}
+			if(op == 3){}
 		}
 		return op;
 	}

@@ -29,6 +29,7 @@ public class Main {
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return -1;
 		}
 		
 		System.out.println("Insira o nome do cliente ");
